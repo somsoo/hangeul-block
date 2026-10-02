@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>한글 자모 결합 블록 & 파닉스 | 유아·외국인 한글 조합 학습기</title>
+  <meta name="description" content="초성·중성·종성 블록을 조합하여 소리를 듣고 한글의 조합 원리를 체득하는 인터랙티브 한글 파닉스 학습기입니다. 음성 발음과 단어 퀘스트를 무료로 즐겨보세요.">
+  <meta name="keywords" content="한글 자모 결합, 한글 파닉스, 한글 공부, 유아 한글, 한글 조합기, 한글 발음, 세종대왕 훈민정음, 한국어 배우기">
+  <meta name="author" content="Enjoy Onepage">
+  <link rel="canonical" href="https://hangeul-block.enjoy-onepage.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hangeul-block.enjoy-onepage.com/">
+  <meta property="og:title" content="한글 자모 결합 블록 & 파닉스 | 인터랙티브 한글 조합기">
+  <meta property="og:description" content="초성, 중성, 종성 블록을 결합해 실시간 발음과 단어를 완성하는 인터랙티브 한글 에듀테크.">
+  <meta property="og:image" content="https://hangeul-block.enjoy-onepage.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#fef08a">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 상단 광고 배너 (모바일 90px 엄격 클램핑) -->
+  <div class="ad-box ad-top">
+    <ins class="adsbygoogle" style="display:inline-block;width:100%;height:60px" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3824727725" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🧩</span>
+        <h1 class="brand-title">한글 자모 결합 블록 & 파닉스</h1>
+      </div>
+      <p class="brand-tagline">초성 · 중성 · 종성을 모아 신비로운 한글 소리를 완성해요!</p>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- 모드 선택 탭 -->
+    <nav class="mode-tabs-nav" aria-label="학습 모드 선택">
+      <div class="mode-tabs-grid">
+        <button type="button" class="tab-btn active" id="tabFreeMode" data-tab="free">
+          <span class="tab-icon">✨</span>
+          <span class="tab-text">자유 자모 결합</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabQuestMode" data-tab="quest">
+          <span class="tab-icon">🎯</span>
+          <span class="tab-text">단어 맞추기 퀘스트</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 퀘스트 문제 알림창 (퀘스트 모드 활성화 시 표시) -->
+    <section class="card quest-banner-card" id="questBannerCard" style="display: none;" aria-label="단어 퀘스트 안내">
+      <div class="quest-info-row">
+        <div class="quest-target-visual">
+          <span class="quest-emoji" id="questEmoji">🍎</span>
+          <div class="quest-target-details">
+            <span class="quest-step-badge" id="questStepBadge">퀘스트 1 / 10</span>
+            <div class="quest-target-word" id="questTargetWord">사과</div>
+            <div class="quest-hint-desc" id="questHintDesc">빨갛고 달콤한 과일이에요!</div>
+          </div>
+        </div>
+        <button type="button" class="action-btn btn-audio-play" id="btnSpeakTarget" aria-label="목표 단어 발음 듣기">
+          <span>🔊 단어 듣기</span>
+        </button>
+      </div>
+      <div class="quest-syllable-progress" id="questSyllableProgress">
+        <span class="syllable-slot-chip active">1번째 글자: 사</span>
+        <span class="syllable-slot-chip">2번째 글자: 과</span>
+      </div>
+    </section>
+
+    <!-- 글자 결합 메인 스테이지 -->
+    <section class="card builder-card" aria-label="글자 조합 스테이지">
+      <div class="builder-slots-wrapper">
+        <!-- 3개 입력 슬롯 (초성, 중성, 종성) -->
+        <div class="slots-container">
+          <button type="button" class="slot-box slot-choseong active" id="slotCho" data-type="cho">
+            <span class="slot-badge">초성(첫소리)</span>
+            <span class="slot-letter" id="slotChoChar">ㄱ</span>
+            <span class="slot-sound-tag" id="slotChoName">기역 [g]</span>
+          </button>
+
+          <span class="slot-plus-sign" aria-hidden="true">+</span>
+
+          <button type="button" class="slot-box slot-jungseong" id="slotJung" data-type="jung">
+            <span class="slot-badge">중성(가운뎃소리)</span>
+            <span class="slot-letter" id="slotJungChar">ㅏ</span>
+            <span class="slot-sound-tag" id="slotJungName">아 [a]</span>
+          </button>
+
+          <span class="slot-plus-sign" aria-hidden="true">+</span>
+
+          <button type="button" class="slot-box slot-jongseong" id="slotJong" data-type="jong">
+            <span class="slot-badge">종성(받침)</span>
+            <span class="slot-letter" id="slotJongChar">(없음)</span>
+            <span class="slot-sound-tag" id="slotJongName">받침 없음</span>
+          </button>
+        </div>
+
+        <div class="equal-arrow-row" aria-hidden="true">
+          <span class="equal-arrow">⬇</span>
+        </div>
+
+        <!-- 최종 완성 글자 디스플레이 -->
+        <div class="result-display-stage">
+          <div class="result-char-bubble" id="resultCharBubble">가</div>
+          <div class="result-phonics-desc" id="resultPhonicsDesc">ㄱ [기역] + ㅏ [아] = 가 [ga]</div>
+          
+          <div class="result-controls-row">
+            <button type="button" class="action-btn btn-primary" id="btnSpeakResult">
+              <span class="btn-icon">🔊</span>
+              <span>소리 다시 듣기</span>
+            </button>
+            <button type="button" class="action-btn btn-secondary" id="btnSaveCollection">
+              <span class="btn-icon">⭐</span>
+              <span>도감에 저장</span>
+            </button>
+            <button type="button" class="action-btn btn-ghost" id="btnClearJongseong">
+              <span class="btn-icon">✕</span>
+              <span>받침 빼기</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 자모 선택 팔레트 트레이 -->
+    <section class="card palette-card" aria-label="자모 선택 팔레트">
+      <div class="palette-header">
+        <h2 class="card-title" id="paletteTitle">초성(첫소리) 자음 선택</h2>
+        <div class="palette-tab-switch">
+          <button type="button" class="chip-tab active" data-target="cho">초성 19</button>
+          <button type="button" class="chip-tab" data-target="jung">중성 21</button>
+          <button type="button" class="chip-tab" data-target="jong">종성 28</button>
+        </div>
+      </div>
+
+      <!-- 초성 19개 그리드 -->
+      <div class="blocks-grid active" id="gridCho">
+        <!-- JS로 동적 생성 -->
+      </div>
+
+      <!-- 중성 21개 그리드 -->
+      <div class="blocks-grid" id="gridJung" style="display: none;">
+        <!-- JS로 동적 생성 -->
+      </div>
+
+      <!-- 종성 28개 그리드 -->
+      <div class="blocks-grid" id="gridJong" style="display: none;">
+        <!-- JS로 동적 생성 -->
+      </div>
+    </section>
+
+    <!-- 중단 광고 배너 -->
+    <div class="ad-box ad-mid">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="1186914926"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 내가 모은 한글 자모 도감 (Collection Book) -->
+    <section class="card collection-card" aria-label="내 한글 도감">
+      <div class="card-header">
+        <h2 class="card-title">내가 발견한 한글 자모 도감</h2>
+        <span class="card-badge" id="collectionCountBadge">0개 발견</span>
+      </div>
+      <p class="collection-hint">자모를 조합하고 [도감에 저장]을 누르면 발견한 글자 카드가 기록됩니다.</p>
+      <div class="collection-grid" id="collectionGrid">
+        <div class="empty-collection-msg">아직 저장된 글자가 없습니다. 글자를 만들어 보세요!</div>
+      </div>
+    </section>
+
+    <!-- 한글 창제 및 제자 원리 교육 가이드 -->
+    <article class="card guide-card">
+      <h2 class="card-title">세종대왕의 음절 조합론적 제자 원리</h2>
+      <div class="guide-content">
+        <div class="guide-item">
+          <h3 class="guide-heading">1. 초성(자음): 발음 기관의 모양을 본뜬 과학</h3>
+          <p class="guide-text">한글의 기본 자음인 'ㄱ, ㄴ, ㅁ, ㅅ, ㅇ'은 혀뿌리가 목구멍을 막는 모양, 혀가 윗잇몸에 닿는 모양, 입술 모양, 이 모양, 목구멍 모양을 그대로 본떠 만들었습니다. 여기에 획을 더해 거센 소리(ㅋ, ㄷ, ㅂ, ㅈ, ㅎ)를 만들었습니다.</p>
+        </div>
+        <div class="guide-item">
+          <h3 class="guide-heading">2. 중성(모음): 하늘(·), 땅(ㅡ), 사람(ㅣ)의 천지인 삼재</h3>
+          <p class="guide-text">모음은 둥근 하늘(·), 평평한 땅(ㅡ), 서 있는 사람(ㅣ)의 세 기본 요소를 결합해 21개의 풍부한 모음 체계를 구성했습니다. 가로 모음(ㅗ, ㅜ, ㅡ)은 자음 아래에, 세로 모음(ㅏ, ㅓ, ㅣ)은 자음 오른쪽에 배치됩니다.</p>
+        </div>
+        <div class="guide-item">
+          <h3 class="guide-heading">3. 종성부용초성: 종성은 초성을 다시 쓴다</h3>
+          <p class="guide-text">훈민정음 해례본에서는 "종성부용초성(終聲復用初聲)", 즉 받침소리는 따로 새로운 글자를 만들지 않고 첫소리(초성) 글자를 그대로 다시 쓴다고 밝혔습니다. 이로써 24개의 기본 글자만으로 수만 개의 소리를 적어낼 수 있습니다.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 하단 광고 배너 -->
+    <div class="ad-box ad-bottom">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="3416334507"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <nav class="footer-nav" aria-label="바닥글 정보">
+        <a href="about.html" class="footer-link">서비스 소개</a>
+        <span class="footer-sep">·</span>
+        <a href="privacy.html" class="footer-link">개인정보처리방침</a>
+        <span class="footer-sep">·</span>
+        <a href="https://enjoy-onepage.com" class="footer-link" target="_blank" rel="noopener">원페이지 허브</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Enjoy Onepage. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/hangeul.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

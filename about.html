@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서비스 소개 | 한글 자모 결합 블록 & 파닉스</title>
+  <meta name="description" content="한글 자모 결합 블록의 교육 철학, 유니코드 산술 제자 원리, 작동 방법 안내입니다.">
+  <link rel="canonical" href="https://hangeul-block.enjoy-onepage.com/about.html">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .static-page { max-width: 680px; margin: 0 auto; padding: 24px 16px 40px; }
+    .static-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
+    .static-section { margin-bottom: 24px; }
+    .static-section h2 { font-size: 1.15rem; font-weight: 700; color: #b45309; margin-bottom: 8px; }
+    .static-section p { font-size: 0.9rem; color: #57534e; line-height: 1.7; margin-bottom: 12px; }
+    .static-section ul { padding-left: 20px; color: #57534e; font-size: 0.9rem; line-height: 1.7; }
+    .btn-back { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; background: #ffffff; border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-main); text-decoration: none; font-size: 0.88rem; margin-top: 20px; font-weight: 700; }
+    .btn-back:hover { border-color: #ca8a04; }
+  </style>
+</head>
+<body>
+  <div class="static-page">
+    <h1 class="static-title">🧩 한글 자모 결합 블록 서비스 소개</h1>
+    
+    <div class="static-section">
+      <h2>1. 개발 배경과 교육 철학</h2>
+      <p>한글은 전 세계 문자 중 유일하게 만든 사람(세종대왕)과 반포일, 그리고 제자 원리가 명문화된 과학적인 음소·음절 문자입니다.</p>
+      <p>기존의 낱단어 통문자 주입식 한글 교육은 아이들이 글자를 그림처럼 암기하게 만들어, 초성·중성·종성이 결합해 새로운 소리를 만들어내는 한글 고유의 조합론적(Combinatorial) 아름다움을 체득하기 어렵게 만듭니다. 본 도구는 블록을 맞추듯 자모를 조합하고 실시간 음성을 즉각 청취함으로써 파닉스 원리를 놀이처럼 깨닫도록 설계되었습니다.</p>
+    </div>
+
+    <div class="static-section">
+      <h2>2. 핵심 기술 아키텍처</h2>
+      <ul>
+        <li><strong>유니코드 산술 합성 엔진:</strong> 초성(19자), 중성(21자), 종성(28자)의 수학적 유니코드 오프셋 공식(0xAC00 + 초성×588 + 중성×28 + 종성)을 브라우저 클라이언트에서 순수 자바스크립트로 연산합니다.</li>
+        <li><strong>Web Speech API 네이티브 음성 합성:</strong> 외부 오디오 파일 다운로드 없이 브라우저 내장 한국어 음성 합성 엔진(ko-KR)을 통해 자연스러운 발음을 무지연으로 발화합니다.</li>
+        <li><strong>Web Audio API 실로폰 음향:</strong> 블록 터치 시 따뜻하고 맑은 펜타토닉 음계 차임을 실시간 합성하여 유아의 청각적 흥미를 자극합니다.</li>
+        <li><strong>100% 로컬 프라이버시 보호:</strong> 아이가 모은 자모 도감과 퀘스트 진행 상태는 서버로 전송되지 않고 기기 내부 로컬 스토리지에만 안전하게 보관됩니다.</li>
+      </ul>
+    </div>
+
+    <div class="static-section">
+      <h2>3. 추천 학습 대상</h2>
+      <p>· 4~7세 한글을 처음 시작하는 유아 및 미취학 아동</p>
+      <p>· 초등학교 입학 전 받침 글자 조합과 발음에 어려움을 겪는 어린이</p>
+      <p>· K-POP, K-드라마를 통해 한글을 배우기 시작한 외국인 한국어 초급 학습자</p>
+    </div>
+
+    <a href="index.html" class="btn-back">← 한글 블록으로 돌아가기</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "한글 자모 결합 블록 & 파닉스",
+  "short_name": "한글블록",
+  "description": "초·중·종성을 결합해 소리를 배우는 인터랙티브 한글 조합기",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fefce8",
+  "theme_color": "#fef08a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
